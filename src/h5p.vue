@@ -31,6 +31,10 @@ export default {
       type: String,
       required: true
     },
+    librariesSrc: {
+      type: String,
+      default: ''
+    },
     embed: {
       type: String,
       default: ''
@@ -70,6 +74,13 @@ export default {
   computed: {
     path () {
       return this.src.endsWith('/') ? this.src.slice(0, -1) : this.src
+    },
+    librariesPath: function path() {
+      // console.log("librariesPath", this.librariesSrc);
+      if(this.librariesSrc == null || this.librariesSrc.length === 0){
+        return this.path;
+      }
+      return this.librariesSrc.endsWith('/') ? this.librariesSrc.slice(0, -1) : this.librariesSrc;
     }
   },
   async mounted () {
@@ -147,7 +158,8 @@ export default {
       })
     },
     async getJSON (...url) {
-      const resp = await fetch(this.path + '/' + url.join('/'), { credentials: 'include' })
+      var path = url[0].startsWith('/') ? url.join('/') : this.path + '/' + url.join('/');
+      const resp = await fetch(path, { credentials: 'include' })
       if (!resp.ok) {
         let body = {}
         try {
@@ -163,12 +175,12 @@ export default {
         if (libraryMap[id]) return
         try {
           libraryMap[id] = {
-            library: await this.getJSON(id, 'library.json'),
+            library: await this.getJSON(this.librariesPath, id, 'library.json'),
             path: id
           }
         } catch {
           libraryMap[id] = {
-            library: await this.getJSON(machineName, 'library.json'),
+            library: await this.getJSON(this.librariesPath, machineName, 'library.json'),
             path: machineName
           }
         }
@@ -187,12 +199,12 @@ export default {
       const sorted = sorter.sort().reverse()
 
       const styles = sorted.map(id => libraries[id])
-        .map(({ path, library }) => library.preloadedCss?.map(file => `${this.path}/${path}/${file.path}`))
+        .map(({ path, library }) => library.preloadedCss?.map(file => `${this.librariesPath}/${path}/${file.path}`))
         .flat(1)
         .filter(Boolean)
 
       const scripts = sorted.map(id => libraries[id])
-        .map(({ path, library }) => library.preloadedJs?.map(file => `${this.path}/${path}/${file.path}`))
+        .map(({ path, library }) => library.preloadedJs?.map(file => `${this.librariesPath}/${path}/${file.path}`))
         .flat(1)
         .filter(Boolean)
 
