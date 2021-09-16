@@ -1,3 +1,5 @@
+console.log('Update 1');
+
 import Toposort from "toposort-class";
 class FetchError extends Error {
   constructor(resp, body) {
@@ -214,6 +216,7 @@ const script = {
       return;
     }
     const {machineName, majorVersion, minorVersion} = h5p2.preloadedDependencies.find((dep) => dep.machineName === h5p2.mainLibrary);
+    this.$emit("libraryInfo", {machineName, majorVersion, minorVersion, versionedName: machineName + " " + majorVersion + "." + minorVersion});
     const h5pIntegration = {
       l10n: {
         H5P: Object.assign({}, l10n.H5P, this.l10n)

@@ -98,6 +98,8 @@ export default {
     }
 
     const { machineName, majorVersion, minorVersion } = h5p.preloadedDependencies.find(dep => dep.machineName === h5p.mainLibrary)
+
+    this.$emit('libraryInfo', { machineName: machineName, majorVersion: majorVersion, minorVersion: minorVersion, versionedName: machineName + ' ' + majorVersion + '.' + minorVersion })
     const h5pIntegration = {
       l10n: {
         H5P: Object.assign({}, l10n.H5P, this.l10n)

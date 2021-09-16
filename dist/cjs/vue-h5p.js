@@ -1,4 +1,5 @@
 "use strict";
+console.log('Update 1');
 Object.defineProperty(exports, "__esModule", {value: true});
 exports[Symbol.toStringTag] = "Module";
 var Toposort = require("toposort-class");
@@ -221,6 +222,7 @@ const script = {
       return;
     }
     const {machineName, majorVersion, minorVersion} = h5p2.preloadedDependencies.find((dep) => dep.machineName === h5p2.mainLibrary);
+    this.$emit("libraryInfo", {machineName, majorVersion, minorVersion, versionedName: machineName + " " + majorVersion + "." + minorVersion});
     const h5pIntegration = {
       l10n: {
         H5P: Object.assign({}, l10n.H5P, this.l10n)
