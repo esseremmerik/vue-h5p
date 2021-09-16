@@ -75,12 +75,12 @@ export default {
     path () {
       return this.src.endsWith('/') ? this.src.slice(0, -1) : this.src
     },
-    librariesPath: function path() {
+    librariesPath: function path () {
       // console.log("librariesPath", this.librariesSrc);
-      if(this.librariesSrc == null || this.librariesSrc.length === 0){
-        return this.path;
+      if (this.librariesSrc == null || this.librariesSrc.length === 0) {
+        return this.path
       }
-      return this.librariesSrc.endsWith('/') ? this.librariesSrc.slice(0, -1) : this.librariesSrc;
+      return this.librariesSrc.endsWith('/') ? this.librariesSrc.slice(0, -1) : this.librariesSrc
     }
   },
   async mounted () {
@@ -158,7 +158,7 @@ export default {
       })
     },
     async getJSON (...url) {
-      var path = url[0].startsWith('/') ? url.join('/') : this.path + '/' + url.join('/');
+      const path = url[0].startsWith('/') ? url.join('/') : this.path + '/' + url.join('/')
       const resp = await fetch(path, { credentials: 'include' })
       if (!resp.ok) {
         let body = {}
