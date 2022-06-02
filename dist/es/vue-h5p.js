@@ -1,5 +1,3 @@
-console.log('Update 1');
-
 import Toposort from "toposort-class";
 class FetchError extends Error {
   constructor(resp, body) {
@@ -230,6 +228,7 @@ const script = {
           fullScreen: this.fullscreen,
           library: `${machineName} ${majorVersion}.${minorVersion}`,
           jsonContent: JSON.stringify(content),
+          metadata: h5p2,
           url: this.path,
           displayOptions: {
             frame: Boolean(this.export || this.embed || this.copyright || this.icon),
