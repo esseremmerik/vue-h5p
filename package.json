@@ -18,11 +18,13 @@
     "dist/*"
   ],
   "dependencies": {
+    "@vitejs/plugin-vue": "^4.4.1",
     "toposort-class": "^1.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.4",
     "@babel/preset-env": "^7.14.4",
+    "@vue/compiler-sfc": "^3.3.8",
     "@vue/eslint-config-standard": "^6.0.0",
     "@vue/test-utils": "1.2.0",
     "core-js": "^3.13.1",
@@ -43,11 +45,9 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-string": "^3.0.0",
-    "vite": "^2.3.4",
-    "vite-plugin-vue2": "^1.5.1",
-    "vue": "^2.6.12",
-    "vue-jest": "^4.0.1",
-    "vue-template-compiler": "^2.6.12"
+    "vite": "^4.3.9",
+    "vue": "^3.3.8",
+    "vue-jest": "^4.0.1"
   },
   "homepage": "https://github.com/technowledgy/vue-h5p#readme",
   "keywords": [
