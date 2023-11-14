@@ -8,7 +8,7 @@ function createComponent (props, cbDefault, cbError) {
   const renderError = jest.fn(cbError)
   const wrapper = shallowMount(h5p, {
     propsData: props,
-    scopedSlots: {
+    slots: {
       default: renderDefault,
       error: renderError
     }
@@ -31,7 +31,7 @@ describe('Component', () => {
   })
 
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   it('renders an iframe for existing h5p-content', async () => {
@@ -79,7 +79,7 @@ describe('Component', () => {
     }))
     await flushPromises()
     expect(fetch).toHaveBeenCalledWith('/hello-world/h5p.json', expect.anything())
-    wrapper.destroy()
+    wrapper.unmount()
     fetch.mockClear();
 
     ({ wrapper } = createComponent({
