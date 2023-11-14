@@ -1,4 +1,7 @@
 export default {
+  testEnvironmentOptions: {
+    customExportConditions: ["node", "node-addons"],
+  },
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/**'
@@ -11,7 +14,7 @@ export default {
     'js'
   ],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@src/(.*)$': '<rootDir>/src/$1'
   },
   setupFilesAfterEnv: [
     '<rootDir>/tests/setup.js'
@@ -24,7 +27,7 @@ export default {
     '**/tests/unit/**/*.spec.js'
   ],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.vue$': '@vue/vue3-jest',
     '^.+\\.js$': 'babel-jest'
   },
   watchPlugins: [
