@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { dirname, resolve } from 'path'
 import { defineConfig } from 'vite'
-import { createVuePlugin } from 'vite-plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 import { string } from 'rollup-plugin-string'
 import copy from 'rollup-plugin-copy'
 import del from 'rollup-plugin-delete'
@@ -47,7 +47,7 @@ const defaultConfig = defineConfig({
     sourcemap: true
   },
   plugins: [
-    createVuePlugin(),
+    vue(),
     string({ include: 'frame/*.js' }),
     copy({
       targets: [
@@ -65,12 +65,12 @@ const defaultConfig = defineConfig({
   resolve: {
     alias: [
       {
-        find: /^@/,
+        find: /^@src/,
         replacement: resolve(__dirname, 'src')
       },
       {
         find: /^frame\/script$/,
-        replacement: resolve(__dirname, 'frame/frame.es.js')
+        replacement: resolve(__dirname, 'frame/frame.js')
       },
       {
         find: /^frame\/style$/,
