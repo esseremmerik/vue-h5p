@@ -1,6 +1,6 @@
 export default {
   testEnvironmentOptions: {
-    customExportConditions: ["node", "node-addons"],
+    customExportConditions: ['node', 'node-addons'],
   },
   collectCoverage: true,
   collectCoverageFrom: [
