@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import H5p from '@/h5p.vue'
+import H5p from '@src/h5p.vue'
 
 export default {
   name: 'Example',
