@@ -19,8 +19,8 @@
 
 <script>
 import Toposort from 'toposort-class'
-import { FetchError } from '@/errors'
-import l10n from '@/l10n'
+import { FetchError } from '@src/errors'
+import l10n from '@src/l10n'
 import frameScript from 'frame/script'
 import frameStyle from 'frame/style'
 
