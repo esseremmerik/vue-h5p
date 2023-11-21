@@ -1,14 +1,14 @@
 import { shallowMount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
-import h5p from '@/h5p.vue'
-import { FetchError } from '@/errors'
+import h5p from '@src/h5p.vue'
+import { FetchError } from '@src/errors'
 
 function createComponent (props, cbDefault, cbError) {
   const renderDefault = jest.fn(cbDefault)
   const renderError = jest.fn(cbError)
   const wrapper = shallowMount(h5p, {
     propsData: props,
-    scopedSlots: {
+    slots: {
       default: renderDefault,
       error: renderError
     }
@@ -31,7 +31,7 @@ describe('Component', () => {
   })
 
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   it('renders an iframe for existing h5p-content', async () => {
@@ -79,7 +79,7 @@ describe('Component', () => {
     }))
     await flushPromises()
     expect(fetch).toHaveBeenCalledWith('/hello-world/h5p.json', expect.anything())
-    wrapper.destroy()
+    wrapper.unmount()
     fetch.mockClear();
 
     ({ wrapper } = createComponent({
